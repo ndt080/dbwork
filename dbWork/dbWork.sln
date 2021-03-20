@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbWork", "dbWork.csproj", "{28AC7823-6253-47C0-8998-3124CA5EB22C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "..\test\test.csproj", "{40EA1D64-3364-4EA0-BC27-646145FC4F24}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28AC7823-6253-47C0-8998-3124CA5EB22C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28AC7823-6253-47C0-8998-3124CA5EB22C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28AC7823-6253-47C0-8998-3124CA5EB22C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28AC7823-6253-47C0-8998-3124CA5EB22C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40EA1D64-3364-4EA0-BC27-646145FC4F24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40EA1D64-3364-4EA0-BC27-646145FC4F24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40EA1D64-3364-4EA0-BC27-646145FC4F24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40EA1D64-3364-4EA0-BC27-646145FC4F24}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
