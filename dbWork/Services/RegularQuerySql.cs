@@ -1,14 +1,14 @@
 using System;
 using Npgsql;
 
-namespace dbWork
+namespace dbWork.Services
 {
-    public class QuerySQL
+    public class RegularQuerySql
     {
         private string DbConnectString { get; set; }
         private NpgsqlConnection Connection { get; set; }
 
-        public QuerySQL(string dbConnectString)
+        public RegularQuerySql(string dbConnectString)
         {
             DbConnectString = dbConnectString;
             Connection = new NpgsqlConnection(DbConnectString);
@@ -17,7 +17,7 @@ namespace dbWork
         {
             try
             {
-                var command = new NpgsqlCommand("SELECT * FROM " + table, Connection);
+                var command = new NpgsqlCommand($"SELECT * FROM {table}", Connection);
                 command.ExecuteNonQuery();
                 return true;
             }
@@ -37,7 +37,7 @@ namespace dbWork
             Connection.Dispose();
         }
 
-        public bool ExecuteSqlFile(string filename)
+        public bool ExecSqlFile(string filename)
         {
             try
             {
@@ -52,12 +52,12 @@ namespace dbWork
             }
 
         }
-        public int ExecuteSqlNonQuery(string querystring)
+        public int ExecSqlNonQuery(string querystring)
         {
             var command = new NpgsqlCommand(querystring, Connection);
             return command.ExecuteNonQuery();
         }
-        public NpgsqlDataReader ExecuteReadSqlQuery(string querystring)
+        public NpgsqlDataReader ExecReadSqlQuery(string querystring)
         {
             var command = new NpgsqlCommand(querystring, Connection);
             return command.ExecuteReader();
