@@ -1,4 +1,7 @@
-﻿namespace dbWork
+﻿using dbWork.Context;
+using dbWork.Repository;
+
+namespace dbWork
 {
     internal static class Program
     {

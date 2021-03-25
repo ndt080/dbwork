@@ -9,7 +9,7 @@ using dbWork.Context;
 
 namespace dbWork.Migrations
 {
-    [DbContext(typeof(ScientistContext))]
+    [DbContext(typeof(BaseContext))]
     [Migration("20210324094455_Scientist")]
     partial class Scientist
     {

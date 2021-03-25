@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using dbWork.Models;
 
-namespace dbWork.Services
+namespace dbWork.Repository
 {
-    public static class RegularQuerySqlExtension
+    public static class RegularRepositoryExtension
     {
-        public static List<ScInfoOrgName> SelectScInfoOrgName(this RegularQuerySql rq)
+        public static List<ScInfoAndOrgName> GetInfoAndOrgName(this RegularRepository rq)
         {
             rq.OpenConnection();
             var rd = rq.ExecReadSqlQuery("" +
@@ -15,10 +15,10 @@ namespace dbWork.Services
                                          "\"Scientist\".\"Position\", \"Organization\".\"Name\" " +
                                          "FROM \"Scientist\", \"Organization\" " +
                                          "WHERE \"Scientist\".\"Organization_Id\" = \"Organization\".\"Id\";");
-            var list = new List<ScInfoOrgName>();
+            var list = new List<ScInfoAndOrgName>();
             while (rd.Read())
             {
-                list.Add(new ScInfoOrgName()
+                list.Add(new ScInfoAndOrgName()
                 {
                     Id = (int) rd["Id"],
                     LastName = rd["LastName"].ToString(),
@@ -32,7 +32,7 @@ namespace dbWork.Services
             rq.CloseConnection();
             return list;
         }
-        public static List<ScWhereOrgName> SelectScWhereOrgName(this RegularQuerySql rq, string orgname)
+        public static List<ScInfoByOrgName> GetInfoByOrgName(this RegularRepository rq, string orgname)
         {
             rq.OpenConnection();
             var rd = rq.ExecReadSqlQuery($"" + 
@@ -50,10 +50,10 @@ namespace dbWork.Services
                 $"INNER JOIN \"Organization\" ON \"Organization\".\"Id\" = \"Scientist\".\"Organization_Id\" " +
                 $"WHERE \"Organization\".\"Name\" = '{orgname}'");
             
-            var list = new List<ScWhereOrgName>();
+            var list = new List<ScInfoByOrgName>();
             while (rd.Read())
             {
-                list.Add(new ScWhereOrgName()
+                list.Add(new ScInfoByOrgName()
                 {
                     Id = (int) rd["Id"],
                     LastName = rd["LastName"].ToString(),

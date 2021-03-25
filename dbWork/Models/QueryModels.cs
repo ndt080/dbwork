@@ -3,7 +3,7 @@ using System;
 namespace dbWork.Models
 {
 
-    public class ScWhereOrgName
+    public class ScInfoByOrgName
     {
         public int Id { get; set; }
         public string LastName { get; set; }
@@ -18,7 +18,7 @@ namespace dbWork.Models
         public string NumberPhone { get; set; }
         public string OrgName { get; set; }
     }
-    public class ScInfoOrgName
+    public class ScInfoAndOrgName
     {
         public int Id { get; set; }
         public string LastName { get; set; }

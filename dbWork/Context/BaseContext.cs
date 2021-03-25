@@ -6,22 +6,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace dbWork.Context
 {
-    public sealed class ScientistContext : DbContext 
+    public sealed class BaseContext : DbContext 
     {
         public DbSet<Scientist> Scientist { get; set; }
         public DbSet<Organization> Organization { get; set; }
-        public ScientistContext()
-        {
-            try
-            {
-                var count = Scientist.Count();
-                count = Organization.Count();
-            }
-            catch (Exception)
-            {
-                Database.EnsureCreated();
-            }
-        }
+        public BaseContext() { }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,14 +1,14 @@
 using System;
 using Npgsql;
 
-namespace dbWork.Services
+namespace dbWork.Repository
 {
-    public class RegularQuerySql
+    public class RegularRepository
     {
         private string DbConnectString { get; set; }
         private NpgsqlConnection Connection { get; set; }
 
-        public RegularQuerySql(string dbConnectString)
+        public RegularRepository(string dbConnectString)
         {
             DbConnectString = dbConnectString;
             Connection = new NpgsqlConnection(DbConnectString);

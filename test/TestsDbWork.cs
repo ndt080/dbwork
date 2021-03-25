@@ -4,7 +4,8 @@ using System.Linq;
 using dbWork;
 using dbWork.Context;
 using dbWork.Models;
-using dbWork.Services;
+using dbWork.Repository;
+using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 
 namespace test
@@ -19,72 +20,36 @@ namespace test
         private static readonly string DbConnectString = $"User ID={Login};Password={Pass};Host=localhost;Port=5432;Database=postgres;";
         
         [Test]
-        public void SelectScInfoOrgNameTestBySql()
+        public void GetInfoAndOrgNameTest1()
         {
-            var query = new RegularQuerySql(DbConnectString);
-            var list1 = query.SelectScInfoOrgName();
+            var query = new RegularRepository(DbConnectString);
+            var list1 = query.GetInfoAndOrgName();
             
             var check = list1 != null;
             Assert.True(check);
         }
         
         [Test]
-        public void SelectScWhereOrgNameTestBySql()
+        public void GetInfoByOrgNameTest1()
         {
-            var query = new RegularQuerySql(DbConnectString);
-            var list1 = query.SelectScWhereOrgName("Белорусский государственный университет");
+            var query = new RegularRepository(DbConnectString);
+            var list1 = query.GetInfoByOrgName("Белорусский государственный университет");
             
             var check = list1 != null;
             Assert.True(check);
         }      
         
         [Test]
-        public void SelectScInfoOrgNameTestByLinq()
+        public void GetInfoAndOrgNameTest2()
         {
-            var db = new ScientistContext();
-            
-            var query = db.Scientist.Join(db.Organization,
-                s => s.Organization_Id,
-                o => o.Id,
-                (s, o) => new
-                {
-                    Id = s.Id,
-                    LastName = s.LastName,
-                    FirstName = s.FirstName,
-                    AcademicDegree = s.AcademicDegree,
-                    Position = s.Position,
-                    OrganizationName = o.Name,
-                });
-            
+            var query = OrmRepository.GetInfoAndOrgName();
             var check = query.Any();
             Assert.True(check);
         }
         [Test]
-        public void SelectScWhereOrgNameTestByLinq()
+        public void GetInfoByOrgNameTest2()
         {
-            var db = new ScientistContext();
-
-            var query = db.Scientist.Join(db.Organization,
-                s => s.Organization_Id,
-                o => o.Id,
-                (s, o) => new
-                {
-                    OrganizationName = o.Name,
-                    Id = s.Id,
-                    LastName = s.LastName,
-                    FirstName = s.FirstName,
-                    Patronymic = s.Patronymic,
-                    Gender = s.Gender,
-                    DateBirdth = s.DateBirdth,
-                    Age = (DateTime.Now.Month >= s.DateBirdth.Month && DateTime.Now.Day >= s.DateBirdth.Day)
-                        ? (DateTime.Now.Year - s.DateBirdth.Year)
-                        : (DateTime.Now.Year - s.DateBirdth.Year - 1),
-                    AcademicDegree = s.AcademicDegree,
-                    Position = s.Position,
-                    Address = s.Address,
-                    NumberPhone = s.NumberPhone,
-                }).Where(o => o.OrganizationName == "Белорусский государственный университет");
-            
+            var query = OrmRepository.GetInfoByOrgName("Белорусский государственный университет");
             var check = query.Any();
             Assert.True(check);
         }

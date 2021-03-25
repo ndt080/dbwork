@@ -8,7 +8,7 @@ using dbWork.Context;
 
 namespace dbWork.Migrations
 {
-    [DbContext(typeof(ScientistContext))]
+    [DbContext(typeof(BaseContext))]
     partial class ScientistContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
